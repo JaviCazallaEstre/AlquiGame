@@ -1,0 +1,32 @@
+/*
+Custom Css
+*/
+body{
+    overflow-x: hidden;
+}
+.imagen{
+    background-image: url(../img/Foto1parallax.jpg);
+}
+.parallax-image{
+    height: 500px;
+    margin-bottom: 50px;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.imagen1{
+    background-image: url(../img/fotoparallax2.jpg);
+}
+.texto-parallax{
+    font-size:1.5em;
+}
+.h1-par{
+    font-family: 'Roboto', sans-serif;
+    font-size: 70px !important;
+    font-weight: 600 !important;
+}
+#mapid{
+    width: 100%;
+    height: 300px;
+}

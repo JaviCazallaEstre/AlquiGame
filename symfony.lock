@@ -1,4 +1,18 @@
 {
+    "api-platform/core": {
+        "version": "2.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "2.5",
+            "ref": "05b57782a78c21a664a42055dc11cf1954ca36bb"
+        },
+        "files": [
+            "./config/packages/api_platform.yaml",
+            "./config/routes/api_platform.yaml",
+            "./src/Entity/.gitignore"
+        ]
+    },
     "doctrine/annotations": {
         "version": "1.13",
         "recipe": {
@@ -79,8 +93,20 @@
     "doctrine/sql-formatter": {
         "version": "1.1.2"
     },
+    "easycorp/easyadmin-bundle": {
+        "version": "4.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "b131e6cbfe1b898a508987851963fff485986285"
+        }
+    },
     "egulias/email-validator": {
         "version": "3.1.2"
+    },
+    "fig/link-util": {
+        "version": "1.2.0"
     },
     "friendsofphp/proxy-manager-lts": {
         "version": "v1.0.5"
@@ -90,6 +116,18 @@
     },
     "monolog/monolog": {
         "version": "2.3.5"
+    },
+    "nelmio/cors-bundle": {
+        "version": "2.2",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "1.5",
+            "ref": "6bea22e6c564fba3a1391615cada1437d0bde39c"
+        },
+        "files": [
+            "./config/packages/nelmio_cors.yaml"
+        ]
     },
     "nikic/php-parser": {
         "version": "v4.13.2"
@@ -341,6 +379,9 @@
     "symfony/polyfill-php81": {
         "version": "v1.24.0"
     },
+    "symfony/polyfill-uuid": {
+        "version": "v1.24.0"
+    },
     "symfony/process": {
         "version": "v6.0.3"
     },
@@ -390,6 +431,15 @@
     "symfony/security-http": {
         "version": "v6.0.3"
     },
+    "symfony/sendgrid-mailer": {
+        "version": "6.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.4",
+            "ref": "b46e4f8f1adb2864f0aa9c0ff57aea3324a07199"
+        }
+    },
     "symfony/serializer": {
         "version": "v6.0.3"
     },
@@ -433,6 +483,9 @@
             "./config/packages/twig.yaml",
             "./templates/base.html.twig"
         ]
+    },
+    "symfony/uid": {
+        "version": "v6.0.3"
     },
     "symfony/validator": {
         "version": "6.0",
@@ -507,6 +560,9 @@
     "symfony/yaml": {
         "version": "v6.0.3"
     },
+    "symfonycasts/verify-email-bundle": {
+        "version": "v1.8.0"
+    },
     "twig/extra-bundle": {
         "version": "v3.3.7"
     },
@@ -515,5 +571,8 @@
     },
     "webmozart/assert": {
         "version": "1.10.0"
+    },
+    "willdurand/negotiation": {
+        "version": "3.1.0"
     }
 }

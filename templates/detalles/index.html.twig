@@ -1,0 +1,96 @@
+<section class="bg-light">
+	<div class="container pb-5">
+		<div class="row">
+			<div class="col-lg-5 mt-5">
+				<div class="card mb-3">
+					{% set foto = 'img/juego/' ~ juego.foto %}
+					<img class="card-img img-fluid" alt="Card image cap" id="product-detail" src="{{foto}}"/>
+				</div>
+			</div>
+			<div class="col-lg-7 mt-5">
+				<div class="card">
+					<div class="card-body">
+						<h1 class="h2 titulo">{{juego.nombre}}</h1>
+						<ul class="list-inline">
+							<li class="list-inline-item">
+								<h6>Plataforma:</h6>
+							</li>
+							<li class="list-inline-item">
+								<p class="text-muted plataforma">
+									<strong>{{juego.plataforma}}</strong>
+								</p>
+							</li>
+						</ul>
+
+						<h6>Descripcion:</h6>
+						<p class="text-muted descripcion">
+							{{juego.descripcion}}
+						</p>
+						<ul class="list-inline">
+							<li class="list-inline-item">
+								<h6>Desarrolladora:</h6>
+							</li>
+							<li class="list-inline-item">
+								<p class="text-muted desarrolladora">
+									<strong>{{juego.desarrolladora}}</strong>
+								</p>
+							</li>
+						</ul>
+						<ul class="list-inline">
+							<li class="list-inline-item">
+								<h6>Género:</h6>
+							</li>
+							<li class="list-inline-item">
+								<p class="text-muted genero">
+									<strong>{{juego.generos}}</strong>
+								</p>
+							</li>
+
+						</ul>
+
+						<ul class="list-inline">
+							<li class="list-inline-item">
+								<h6>Rango de edad:</h6>
+							</li>
+							<li class="list-inline-item">
+								<p class="text-muted rangoEdad">
+									<strong>{{juego.rango}}</strong>
+								</p>
+							</li>
+						</ul>
+
+						{% if juego.video|length > 0 %}
+							<ul class="list-inline">
+								<li class="list-inline-item">
+									<h6>Trailer:</h6>
+								</li>
+								<div class="col-12">
+									<a href="#">
+										{% set video = 'videos/' ~ juego.video %}
+										<video class="card-img img-fluid" controls>
+											<source src="{{video}}" type="video/mp4"/>
+										</video>
+									</a>
+								</div>
+							</ul>
+						{% endif %}
+
+						<div class="row pb-3">
+							<div class="col d-grid">
+								<button type="submit" class="btn btn-success btn-lg" name="submit" value="buy">
+									Alquilar
+									{{juego.precio}}.00€
+								</button>
+							</div>
+							<div class="col d-grid">
+								<button type="submit" id="volver" class="btn btn-success btn-lg">
+									Volver
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

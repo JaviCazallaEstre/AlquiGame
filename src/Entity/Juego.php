@@ -2,12 +2,19 @@
 
 namespace App\Entity;
 
+use DateTime;
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\JuegoRepository;
 use Doctrine\Common\Collections\Collection;
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\HttpFoundation\File\File;
 use Doctrine\Common\Collections\ArrayCollection;
-
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+/**
+ *
+ * @Vich\Uploadable()
+ */
 #[ORM\Entity(repositoryClass: JuegoRepository::class)]
 #[ApiResource]
 class Juego
@@ -32,6 +39,20 @@ class Juego
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
     private $video;
 
+    /**
+     * @Vich\UploadableField(mapping="product_videos", fileNameProperty="video")
+     *
+     * @Assert\File(
+     *      mimeTypes = {"video/mp4"},
+     *      mimeTypesMessage = "El archivo debe de ser vídeo MP4",
+     *      maxSize = "30M",
+     *      maxSizeMessage = "El máximo de peso del archivo no puede superer los 30MB"
+     * )
+     * 
+     * @var File
+     */
+    private $videoFile;
+
     #[ORM\ManyToOne(targetEntity: Desarrolladora::class, inversedBy: 'juegos')]
     #[ORM\JoinColumn(nullable: false)]
     private $desarrolladora;
@@ -50,6 +71,8 @@ class Juego
     #[ORM\ManyToMany(targetEntity: Genero::class, inversedBy: 'juegos')]
     private $generos;
 
+    #[ORM\Column(type: 'datetime')]
+    private $actualizado;
 
 
     public function __construct()
@@ -95,6 +118,18 @@ class Juego
     public function setPrecio(float $precio): self
     {
         $this->precio = $precio;
+
+        return $this;
+    }
+
+    public function getActualizado(): ?DateTime
+    {
+        return $this->actualizado;
+    }
+
+    public function setActualizado(DateTime $actualizado): self
+    {
+        $this->actualizado = $actualizado;
 
         return $this;
     }
@@ -155,6 +190,21 @@ class Juego
     public function setRangoEdad(?rangoedad $RangoEdad): self
     {
         $this->RangoEdad = $RangoEdad;
+
+        return $this;
+    }
+
+    public function getVideoFile(){
+        return $this->videoFile;
+    }
+
+    public function setVideoFile(File $videoFile = null)
+    {
+        $this->videoFile = $videoFile;
+
+        if ($videoFile) {
+            $this->actualizado = new \DateTime('now');
+        }
 
         return $this;
     }

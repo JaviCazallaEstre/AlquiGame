@@ -56,19 +56,20 @@
 				</ul>
 			</div>
 			<div class="navbar align-self-center d-flex">
-				<div class="d-lg-none flex-sm-fill mt-3 mb-4 col-7 col-sm-auto pr-3">
-					<div class="input-group">
-						<input type="text" class="form-control" id="inputMobileSearch" placeholder="Search ..."/>
-						<div class="input-group-text">
-							<i class="fa fa-fw fa-search"></i>
+				{% if app.user %}
+					<div class="dropdown">
+						{% if app.user.foto|length > 0 %}
+						{% set foto = 'img/Perfil/' ~ app.user.foto %}
+					{% else %}
+						{% set foto = 'img/Perfil/perfil.jpeg' %}
+					{% endif %}
+					<img id="fotoPerfil" class="fotoPerfil dropbtn" src="{{ foto }}"/>
+						<div class="dropdown-content">
+							<a href="#">Editar perfil</a>
+							<a href="#">Mis alquileres</a>
+							<a href="logout">Cerrar sesión</a>
 						</div>
 					</div>
-				</div>
-				{% if app.user %}
-				<a class="nav-icon position-relative text-decoration-none" href="#">
-					<i class="fa fa-fw fa-user text-dark mr-3"></i>
-					<span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark">+99</span>
-				</a>
 				{% else %}
 					<a href="login" class="nav-link">Iniciar sesión</a>
 					<a href="register" class="nav-link">Registrarse</a>

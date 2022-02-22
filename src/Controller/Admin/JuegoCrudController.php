@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Juego;
 
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\ImageField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\MoneyField;
@@ -30,7 +31,10 @@ class JuegoCrudController extends AbstractCrudController
             yield ImageField::new('foto')
                 ->setUploadDir('public/img/juego')
                 ->setBasePath('img/juego'),
-            yield TextField::new('Video'),
+            yield TextField::new('video')->hideOnForm(),
+            yield TextField::new('videoFile')
+                ->setFormType(VichFileType::class)
+                ->hideOnIndex(),
             yield AssociationField::new('desarrolladora'),
             yield AssociationField::new('RangoEdad'),
             yield AssociationField::new('plataforma'),

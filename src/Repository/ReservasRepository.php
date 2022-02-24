@@ -19,6 +19,24 @@ class ReservasRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservas::class);
     }
 
+    public function insertReserva($form){
+        $con = $this->getEntityManager()->getConnection();
+        $query = "insert into reserva(fecha_inicio, fecha_fin, precio,juego_id, usuario_id) values";
+        $resul = $con->prepare($query);
+        $resul->executeQuery();
+    }
+
+    public function findAlquileresByUser($id){
+        $con = $this->getEntityManager()->getConnection();
+
+        $query = "select j.nombre,r.fecha_inicio, r.fecha_fin, r.precio, fecha_devolucion
+        from reservas r join juego j on j.id = r.juego_id
+        where r.usuario_id=".$id;
+        $resul = $con->prepare($query);
+        $a =  $resul->execute();
+        return $a->fetchAllAssociative();
+    }
+
     // /**
     //  * @return Reservas[] Returns an array of Reservas objects
     //  */

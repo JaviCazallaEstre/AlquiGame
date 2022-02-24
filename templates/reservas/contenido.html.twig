@@ -1,0 +1,19 @@
+<div class="container-fluid bg-light py-4 row">
+	<h1 class="h1 text-center">Reserva</h1>
+	<div class="col-6 mx-auto">
+		{{form_start(reservaForm,{'attr':{'class':'form-control', 'class':'bg-transparent'}}) }}
+		<div class="form-group row mb-4 col-12">
+			{{form_row(reservaForm.fecha_inicio,{'attr':{'class':'form-control'}}) }}
+		</div>
+		<div class="form-group row mb-4 col-12">
+			{{form_row(reservaForm.fecha_fin,{'attr':{'class':'form-control'}}) }}
+		</div>
+		<div class="form-group row mb-4 col-12">
+			{{form_row(reservaForm.precio,{'attr':{'class':'form-control'}}) }}
+		</div>
+        <div class="form-group row mb-4 col-12">
+				{{form_row(reservaForm.save,{'attr':{'class':'btn btn-success float-end'}})}}
+			</div>
+		{{ form_end(reservaForm) }}
+	</div>
+</div>

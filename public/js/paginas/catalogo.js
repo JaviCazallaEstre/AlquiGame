@@ -5,7 +5,7 @@ $(function () {
   var filtrosGenero = [];
   var filtrosPlataforma = [];
   var filtrosDesarrolladora = [];
-  var orden = "precioMenor";
+  var orden = "alfabetico";
 
   //Funcion que guarda la pantalla de articulos en el contenedor
   function guardarProductos() {
@@ -24,16 +24,27 @@ $(function () {
       contenedor.appendTo("div.cuerpo");
     }
   );
-  $.getJSON("api/plataformas", function (data, textStatus, jqXHR) {
-    console.log(data);
-  });
-
   var plantillaJuego = $("<div>").load(
     "../../html/plantillaJuego.html",
     function () {
       cargarInformacion();
     }
   );
+
+  $(document).on("change", "#ordenarJuegos", function (event) {
+    if (
+      $("#ordenarJuegos option:selected").text() == "De mayor a menor precio"
+    ) {
+      orden = "precioMayor";
+    } else if ($("#ordenarJuegos option:selected").text() == "Ordenar de A-Z") {
+      orden = "alfabetico";
+    } else if (
+      $("#ordenarJuegos option:selected").text() == "De menor a mayor precio"
+    ) {
+      orden = "precioMenor";
+    }
+    recargarJuegosFiltrados();
+  });
 
   async function cargarInformacion() {
     let fetchURL = (url) => fetch(url).then((r) => r.json());
@@ -58,10 +69,7 @@ $(function () {
     mostrarFiltroRangoEdades(rangoEdades);
     mostrarFiltroDesarrolladoras(desarrolladoras);
     allJuegos = juegos;
-    juegos.sort(function (a, b) {
-      return a.nombre.localeCompare(b.nombre);
-    });
-    mostrarJuegos(juegos);
+    recargarJuegosFiltrados();
   }
 
   function mostrarLoading() {
@@ -80,10 +88,19 @@ $(function () {
       contenedorJuego.find(".nombre").text(value.nombre);
       contenedorJuego.find(".foto").attr("src", "img/juego/" + value.foto);
       contenedorJuego.find(".plataforma").text(value.plataforma);
-      contenedorJuego.find(".precio").text(value.precio + ".00 €");
+      var formatter = new Intl.NumberFormat("es-ES", {
+        style: "currency",
+        currency: "EUR",
+      });
+      precio = formatter.format(value.precio);
+      contenedorJuego.find(".precio").text(precio);
+      contenedorJuego.find(".alquilar").on("click", function (ev) {
+        ev.preventDefault();
+        creaReserva(value);
+      });
       contenedorJuego.find(".detalles").on("click", function (ev) {
         ev.preventDefault();
-        mostrarDetalles(value.id);
+        mostrarDetalles(value);
       });
       contenedorJuego.find("a:last").on("click", function () {});
       contenedorJuego.addClass("col-md-4");
@@ -190,17 +207,27 @@ $(function () {
     );
   }
 
-  function mostrarDetalles(id) {
+  function mostrarDetalles(juego) {
     $.getJSON(
-      "http://www.alquigame.com:8000/catalogo/juego/" + id,
+      "http://www.alquigame.com:8000/catalogo/juego/" + juego.id,
       function (data, textStatus, jqXHR) {
-        juego = data.response;
+        htmlJuego = data.response;
         guardarProductos();
-        $("div.cuerpo").append(juego);
+        $("div.cuerpo").append(htmlJuego);
         $("button[id=volver]").on("click", function (ev) {
           ev.preventDefault();
           restaurarProductos();
         });
+        $("button[id=alquilar]").on("click", function (ev) {
+          ev.preventDefault();
+          creaReserva(juego);
+        });
+        var formatter = new Intl.NumberFormat("es-ES", {
+          style: "currency",
+          currency: "EUR",
+        });
+        precio = formatter.format(juego.precio);
+        $("#alquilar").html('Alquilar ' + precio);
       }
     );
   }

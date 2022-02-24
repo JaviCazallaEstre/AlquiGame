@@ -45,12 +45,16 @@ class CatalogoController extends AbstractController
     public function findGamebyId(string $id, ManagerRegistry $doctrine): Response
     {
         $juego = $doctrine->getRepository(Juego::class)->findGame($id);
-        $response = array(
-            "code" => 200,
-            "response" => $this->render('detalles/index.html.twig', [
-                'juego' => $juego,
-            ])->getContent()
-        );
-        return new Response(json_encode($response));
+        if (!$juego) {
+            throw $this->createNotFoundException("El juego que has pedido no existe");
+        } else {
+            $response = array(
+                "code" => 200,
+                "response" => $this->render('detalles/index.html.twig', [
+                    'juego' => $juego,
+                ])->getContent()
+            );
+            return new Response(json_encode($response));
+        }
     }
 }

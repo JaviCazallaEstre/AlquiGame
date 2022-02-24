@@ -17,22 +17,18 @@
     <link rel="stylesheet" href="{{asset('css/fontawesome.min.css')}}" />
 {% endblock %}
 {% block javascripts %}
-	<script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
-  <script src="{{asset('js/jquery-ui.min.js')}}"></script>
+  <script src="{{asset('js/jquery-3.6.0.min.js')}}"></script>
 	<script src="{{asset('js/bootstrap.bundle.min.js')}}"></script>
 	<script src="{{asset('js/templatemo.js')}}"></script>
 	<script src="{{asset('js/custom.js')}}"></script>
-  <script src="{{asset('js/jquery.formatCurrency-1.4.0.min.js')}}"></script>
-  <script src="{{asset('js/paginas/jquery.validate.min.js')}}"></script>
-	<script src="{{asset('https://cdn.jsdelivr.net/npm/jquery-validation@1.19.3/dist/additional-methods.min.js')}}"></script>
-  <script src="{{asset('js/paginas/reserva.js')}}"></script>
-  <script src="{{asset('js/paginas/catalogo.js')}}"></script>
+  
+  <script src="{{asset('js/paginas/header.js')}}"></script>
 {% endblock %}
 {% block header %}
 	{{ include('main/header.html.twig') }}
 {% endblock %}
 {% block body %}
-	{{ include('catalogo/contenido.html.twig') }}
+	{{ include('reservas/contenido.html.twig') }}
 {% endblock %}
 {% block footer %}
 	{{ include('main/footer.html.twig') }}

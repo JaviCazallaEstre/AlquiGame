@@ -76,6 +76,10 @@ class RegistrationFormType extends AbstractType
                 'widget'=>'single_text',
                 'label' => 'Fecha de nacimiento',
                 'required' => true,
+                'attr' => [
+                    'min' => (new \DateTime('-100 years'))->format('c'),
+                    'max' => (new \DateTime('-13 years'))->format('c'),
+                ],
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Debes elegir una fecha',

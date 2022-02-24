@@ -4,11 +4,12 @@ namespace App\Form;
 
 use App\Entity\Reservas;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
 class ReservaType extends AbstractType
 {
@@ -19,7 +20,7 @@ class ReservaType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'Fecha de inicio',
                 'required' => true,
-                'constraint' => [
+                'constraints' => [
                     new NotBlank([
                         'message' => 'La fecha de inicio debe de estar rellena'
                     ]),
@@ -32,7 +33,7 @@ class ReservaType extends AbstractType
                 'widget' => 'single_text',
                 'label' => 'Fecha fin',
                 'required' => true,
-                'constraint' => [
+                'constraints' => [
                     new NotBlank([
                         'message' => 'La fecha de inicio debe de estar rellena'
                     ]),
@@ -43,6 +44,9 @@ class ReservaType extends AbstractType
             ])
             ->add('precio', MoneyType::class,[
                 'disabled'=> true
+            ])
+            ->add('save', SubmitType::class, [
+                'label' => 'Alquilar'
             ]);
     }
 

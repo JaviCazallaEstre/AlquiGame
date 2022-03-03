@@ -1,14 +1,25 @@
 <div class="container-fluid bg-light py-5">
-    <h1 class="h1 text-center">Mis Alquileres</h1>
-    <table class="table col-3" id="mytable">
-        <thead>
-            <tr>
-                <th>Juego</th>
-                <th>Fecha de inicio</th>
-                <th>Fecha de fin</th>
-                <th>Precio</th>
-                <th>Fecha de devolución</th>
-            </tr>
-        </thead>
-    </table>
+	<h1 class="h1 text-center">Mis Alquileres</h1>
+	<table class="table table-striped table-bordered table-responsive table-hover">
+		<thead>
+			<tr class="table-success">
+				<th scope="col">Juego</th>
+				<th scope="col">Fecha de inicio</th>
+				<th scope="col">Fecha de fin</th>
+				<th scope="col">Precio</th>
+				<th scope="col">Fecha de devolución</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for alquiler in alquileres %}
+				<tr scope="row">
+					<td>{{alquiler.juego}}</td>
+					<td>{{alquiler.fecha_inicio}}</td>
+					<td>{{alquiler.fecha_fin}}</td>
+					<td>{{alquiler.precio}}€</td>
+					<td>{{alquiler.fecha_devolucion}}</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
 </div>

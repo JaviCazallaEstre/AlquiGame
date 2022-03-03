@@ -214,6 +214,7 @@ $(function () {
         htmlJuego = data.response;
         guardarProductos();
         $("div.cuerpo").append(htmlJuego);
+        $(".descripcion").text($(".descripcion").text().replace("<div>","").replace("</div>","").replaceAll("\t",""));
         $("button[id=volver]").on("click", function (ev) {
           ev.preventDefault();
           restaurarProductos();

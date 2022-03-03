@@ -1,6 +1,7 @@
 /*
 Custom Css
 */
+@import "mixins";
 body {
   overflow-x: hidden;
 }
@@ -66,7 +67,7 @@ body {
 }
 
 .dropdown:hover .dropbtn {
-  background-color: #3e8e41;
+  background-color: #355F40;
 }
 
 .foto {
@@ -80,4 +81,37 @@ body {
 }
 .error{
   color:red;
+}
+.text-success {
+  color: #355F40;
+}
+.shop-top-menu a:hover { color: #355F40 !important;}
+#templatemo_main_nav a:hover { color: #355F40;}
+.bg-success { background-color: #355F40 !important;}
+#template-mo-zay-hero-carousel .carousel-indicators li {
+  margin-top: -50px;
+  background-color: #355F40;
+}
+#template-mo-zay-hero-carousel .carousel-control-next i,
+#template-mo-zay-hero-carousel .carousel-control-prev i {
+  color: #355F40 !important;
+  font-size: 2.8em !important;
+}
+#tempaltemo_footer a:hover { color: #355F40;}
+.btn-success {
+  background-color: #355F40 !important;
+  border-color: #56ae6c !important;
+}
+.table-success{
+  background-color: #355F40;
+}
+.dropdown:hover{
+  transition:ease-in;
+  @include duration(2s);
+}
+.boton{
+  transition: all 1s linear 0s;
+}
+.boton:hover{
+  transform: rotate(360deg);
 }

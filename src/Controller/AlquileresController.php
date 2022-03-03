@@ -21,19 +21,25 @@ class AlquileresController extends AbstractController
         ]);
     }
     #[Route('/alquileres/usuario', name: 'alquileresUsuario')]
-    public function cogeAlquileresDeUsuario(#[CurrentUser] ?User $user, ManagerRegistry $doctrine): Response{
+    public function cogeAlquileresDeUsuario(#[CurrentUser] ?User $user, ManagerRegistry $doctrine): Response
+    {
         $listaAlquileres = $doctrine->getRepository(Reservas::class)->findAlquileresByUser($user->getId());
         $alquileres = [];
         foreach ($listaAlquileres as $alquiler) {
             $alquileres[] = [
-                'juego'=>$alquiler["nombre"],
+                'juego' => $alquiler["nombre"],
                 'fecha_inicio' => $alquiler["fecha_inicio"],
                 'fecha_fin' => $alquiler["fecha_fin"],
-                'precio'=> $alquiler["precio"],
-                'fecha_devolucion'=>$alquiler["fecha_devolucion"]
-                
+                'precio' => $alquiler["precio"],
+                'fecha_devolucion' => $alquiler["fecha_devolucion"]
             ];
         }
-        return new JsonResponse($alquileres, Response::HTTP_OK);
+        $response = array(
+            "code" => 200,
+            "response" => $this->render('alquileres/contenido.html.twig', [
+                'alquileres' => $alquileres,
+            ])->getContent()
+        );
+        return new Response(json_encode($response));
     }
 }

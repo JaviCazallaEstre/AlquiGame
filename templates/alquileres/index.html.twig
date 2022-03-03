@@ -6,7 +6,7 @@
 	<link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"/>
 	<link rel="stylesheet" href="{{asset('css/templatemo.css')}}"/>
 	<link rel="stylesheet" href="{{asset('css/custom.css')}}"/>
-    <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css')}}"/>
+    {# <link rel="stylesheet" href="{{asset('https://cdn.datatables.net/1.11.4/css/jquery.dataTables.min.css')}}"/> #}
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap"/>
 	<link rel="stylesheet" href="{{asset('css/fontawesome.min.css')}}"/>
 {% endblock %}
@@ -22,7 +22,7 @@
 	{{ include('main/header.html.twig') }}
 {% endblock %}
 {% block body %}
-	{{ include('alquileres/contenido.html.twig') }}
+	<div class="cuerpo"></div>
 {% endblock %}
 {% block footer %}
 	{{ include('main/footer.html.twig') }}

@@ -55,15 +55,6 @@ function creaReserva(juego) {
       e.preventDefault();
       $("#Alquilar").attr("disabled", true);
 
-      /*
-      var reserva= new Object();
-      reserva.fechaInicio=$("#fecha_inicio").val();
-      reserva.fechaFin=$("#fecha_fin").val();
-      reserva.precio=$("#totalPrecio").innerHTML;
-      reserva.usuarioId=idUsuario;
-      reserva.juego=juego.id;
-      var reservaJson= JSON.stringify(reserva)*/
-
       var postData =
         $(this).serialize() +
         "&precio=" +

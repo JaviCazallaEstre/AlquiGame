@@ -68,7 +68,8 @@ class JuegoRepository extends ServiceEntityRepository
         $query = "select j.id as id, j.nombre as nombre, j.descripcion as descripcion,j.precio as precio, j.foto as foto,j.video as video  ,string_agg(g.nombre,', ') as generos, p.nombre as plataforma, d.nombre as desarrolladora, re.edad as rango from juego
         j join juego_genero jg on j.id = jg.juego_id
         join genero g on g.id = jg.genero_id
-        join plataforma p on p.id = j.plataforma_id join desarrolladora d on d.id = j.desarrolladora_id
+        join plataforma p on p.id = j.plataforma_id 
+        join desarrolladora d on d.id = j.desarrolladora_id
         join rango_edad re on re.id = j.rango_edad_id
         where j.id =".$id."
         group by j.id, p.nombre, d.nombre, re.edad";

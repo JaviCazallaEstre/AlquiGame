@@ -1,0 +1,4 @@
+// Mixin para fijar la duracion de una transformacion
+@mixin duration($num_segundos) {
+    transition: linear #{$num_segundos};
+  }
